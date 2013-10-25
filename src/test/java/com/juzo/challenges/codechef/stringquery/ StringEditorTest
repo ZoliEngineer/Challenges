@@ -1,0 +1,198 @@
+package com.juzo.challenges.codechef.stringquery;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+public class StringEditorTest {
+
+    @Test
+    public void testEditorCreationAndBasicQuery() {
+        String testStr = "abcdefghijklmn";
+
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+
+        String result = editor.getResult();
+        assertEquals(testStr, result);
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void editorNotAcceptShorterThan10() {
+        StringEditor.createEditorFor("test");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void editorNotAcceptInvalidCharacters() {
+        StringEditor.createEditorFor("test0");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void editorNotAcceptLongerThan_1_500_000() {
+        StringEditor.createEditorFor(new String(new char[1_500_001]));
+    }
+
+    @Test
+    public void testInsertLeft() {
+        String testStr = "aaaaaaaaaaaa";
+        char addedChar = 'b';
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.insertLeft(addedChar);
+
+
+        String result = editor.getResult();
+        assertEquals("baaaaaaaaaaaa", result);
+    }
+
+    @Test
+    public void testInsertRight() {
+        String testStr = "aaaaaaaaaaaa";
+        char addedChar = 'b';
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.insertRight(addedChar);
+
+        String result = editor.getResult();
+        assertEquals("aaaaaaaaaaaab", result);
+    }
+
+    @Test
+    public void testInsertMiddleOdd() {
+        String testStr = "aaaaaaaaaaaa";
+        char addedChar = 'b';
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.insertMiddle(addedChar);
+
+        String result = editor.getResult();
+        assertEquals("aaaaaabaaaaaa", result);
+    }
+
+    @Test
+    public void testInsertMiddleEven() {
+        String testStr = "aaaaaaaaaaaaa";
+        char addedChar = 'b';
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.insertMiddle(addedChar);
+
+        String result = editor.getResult();
+        assertEquals("aaaaaabaaaaaaa", result);
+    }
+
+    @Test
+    public void testDeleteLeft() {
+        String testStr = "baaaaaaaaaaaa";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.deleteLeft();
+
+        String result = editor.getResult();
+        assertEquals("aaaaaaaaaaaa", result);
+    }
+
+    @Test
+    public void testDeleteRight() {
+        String testStr = "aaaaaaaaaaaab";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.deleteRight();
+
+        String result = editor.getResult();
+        assertEquals("aaaaaaaaaaaa", result);
+    }
+
+    @Test
+    public void testDeleteMiddleOdd() {
+        String testStr = "aaaaaabaaaaaa";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.deleteMiddle();
+
+        String result = editor.getResult();
+        assertEquals("aaaaaaaaaaaa", result);
+    }
+
+    @Test
+    public void testDeleteMiddleEven() {
+        String testStr = "aaaaaaabaaaaaa";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        editor.deleteMiddle();
+
+        String result = editor.getResult();
+        assertEquals("aaaaaaaaaaaaa", result);
+    }
+
+    @Test
+    public void queryReturns0IfNotPresent() {
+        String testStr = "aaaaaaaaaaaaaa";
+        String queriedString = "bb";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        int occurence = editor.query(queriedString);
+
+        assertEquals(0, occurence);
+    }
+
+    @Test
+    public void queryReturns1IfPresent() {
+        String testStr = "aaaaabbaaaaaaa";
+        String queriedString = "bb";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        int occurence = editor.query(queriedString);
+
+        assertEquals(1, occurence);
+    }
+
+    @Test
+    public void queryReturns2IfDoublePresent() {
+        String testStr = "aaaaabbaabbaaa";
+        String queriedString = "bb";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        int occurence = editor.query(queriedString);
+
+        assertEquals(2, occurence);
+    }
+
+    @Test
+    public void queryReturns2IfDoublePresentOverlapped() {
+        String testStr = "aaaaabbbaaaaaa";
+        String queriedString = "bb";
+        StringEditor editor = StringEditor.createEditorFor(testStr);
+        int occurence = editor.query(queriedString);
+
+        assertEquals(2, occurence);
+    }
+
+    @Ignore
+    @Test
+    public void testCreationPerformance() {
+        int RUNS = 10000;
+        String[] testData = new String[RUNS];
+        for (int i = 0; i < RUNS; i++) {
+            testData[i] = "abcdefghijk";
+        }
+
+        long before;
+        long after;
+        before = System.nanoTime();
+        for (String testStr : testData) {
+            StringEditor.createEditorFor(testStr);
+        }
+
+        after = System.nanoTime();
+        System.out.println(after - before);
+    }
+
+    @Test
+    public void runGivenScenarion() {
+        StringEditor editor = StringEditor.createEditorFor("bbabaaaaab");
+        editor.insertMiddle('b');
+        editor.insertLeft('b');
+        editor.insertMiddle('b');
+        editor.insertMiddle('b');
+        editor.insertRight('a');
+        editor.insertLeft('a');
+        editor.insertMiddle('b');
+        editor.insertLeft('a');
+        editor.insertMiddle('a');
+        assertEquals(1, editor.query("bbaaa"));
+        editor.deleteMiddle();
+        editor.deleteMiddle();
+        assertEquals("aabbbababbbaaaaba", editor.getResult());
+    }
+}
