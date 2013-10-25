@@ -1,9 +1,12 @@
 package com.bank.exercise.chatwall.command;
 
+import com.bank.exercise.chatwall.ChatLineFormatter;
+import com.bank.exercise.chatwall.model.ChatLine;
 import com.bank.exercise.chatwall.model.User;
 import com.bank.exercise.chatwall.storage.Storage;
 import com.google.common.base.Strings;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -26,14 +29,24 @@ class WallCommand implements Command {
     public List<String> execute(Storage storage) {
         User user = storage.getUser(userName);
         Set<User> subscriptions = user.getSubscriptions();
-       // Set<ChatLine>
-       // for(User user : subscriptions){
-       //
-       // }
+        List<ChatLine> allLines = new ArrayList<>();
 
+        for(User subscription : subscriptions){
+            allLines.addAll(storage.viewTimeLine(subscription));
+        }
+        allLines.addAll(storage.viewTimeLine(user));
+        Collections.sort(allLines);
 
-        return Collections.emptyList();
+        return createOutput(allLines);
 
+    }
+
+    private List<String> createOutput(List<ChatLine> timeLine) { //TODO: duplicated
+        List<String> output = new ArrayList<>(timeLine.size());
+        for(ChatLine line : timeLine)          {
+            output.add(ChatLineFormatter.format(line.getUserName(), line.getLine(), line.getTimeOfPost(), System.currentTimeMillis(), false));
+        }
+        return output;
     }
 
     public static boolean matches(String commandLine) {
