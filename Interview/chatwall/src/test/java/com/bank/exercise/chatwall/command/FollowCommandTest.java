@@ -1,7 +1,7 @@
 package com.bank.exercise.chatwall.command;
 
 
-import com.bank.exercise.chatwall.state.Storage;
+import com.bank.exercise.chatwall.storage.Storage;
 import com.bank.exercise.chatwall.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;

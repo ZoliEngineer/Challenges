@@ -1,6 +1,6 @@
 package com.bank.exercise.chatwall.command;
 
-import com.bank.exercise.chatwall.state.Storage;
+import com.bank.exercise.chatwall.storage.Storage;
 import com.google.common.base.Strings;
 
 import java.util.Collections;
