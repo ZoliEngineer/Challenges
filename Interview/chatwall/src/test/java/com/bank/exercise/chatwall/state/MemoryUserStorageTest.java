@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertSame;
 
+import com.bank.exercise.chatwall.model.User;
 import org.junit.Before;
 import org.junit.Test;
 

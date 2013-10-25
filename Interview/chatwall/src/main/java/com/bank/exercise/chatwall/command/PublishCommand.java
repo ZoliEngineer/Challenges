@@ -1,21 +1,21 @@
 package com.bank.exercise.chatwall.command;
 
 import com.google.common.base.Strings;
-import com.bank.exercise.chatwall.state.ChatLine;
+import com.bank.exercise.chatwall.model.ChatLine;
 import com.bank.exercise.chatwall.state.Storage;
-import com.bank.exercise.chatwall.state.User;
-import com.google.common.collect.Lists;
+import com.bank.exercise.chatwall.model.User;
 
+import java.util.Collections;
 import java.util.List;
 
 class PublishCommand implements Command {
-    private static final String ARROW = "->";
+    private static final String PUBLISH_COMMAN_PART = "->";
 
-    private final String name;
+    private final String userName;
     private final String message;
 
     private PublishCommand(String[] splitedCommandLine) {
-        this.name = splitedCommandLine[0].trim();
+        this.userName = splitedCommandLine[0].trim();
         this.message = splitedCommandLine[1].trim();
     }
 
@@ -26,21 +26,21 @@ class PublishCommand implements Command {
 
     @Override
     public List<String> execute(Storage storage) {
-        User user = storage.getUser(name);
+        User user = storage.getUser(userName);
         ChatLine line = new ChatLine(user, message, System.currentTimeMillis());
         storage.publishMessage(user, line);
-        return Lists.newArrayList(name + " said " + message);
+        return Collections.emptyList();
     }
 
     public static Command create(String commandLine) {
-        return new PublishCommand(commandLine.split(ARROW)); // Out of scope: input validation
+        return new PublishCommand(commandLine.split(PUBLISH_COMMAN_PART)); // Out of scope: input validation
     }
 
     public static boolean matches(String commandLine) {
         if (Strings.isNullOrEmpty(commandLine)) {
             return false;
         } else {
-            return commandLine.contains(ARROW); // Out of scope: deeper check in case of invalid command
+            return commandLine.contains(PUBLISH_COMMAN_PART); // Out of scope: deeper check in case of invalid command
         }
     }
 }

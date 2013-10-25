@@ -1,9 +1,9 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall.model;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class SimpleUser implements User {
+public class SimpleUser implements User, SubsriptionHandler {
 
     private final String name;
 
@@ -11,7 +11,7 @@ public class SimpleUser implements User {
 
     public SimpleUser(String name) {
         this.name = name;
-        subscriptions.add(this);
+        //subscriptions.add(this);
     }
 
     @Override
@@ -21,7 +21,9 @@ public class SimpleUser implements User {
 
     @Override
     public void subscribe(User user) {
-        subscriptions.add(user);
+        if (!this.equals(user)) {
+            subscriptions.add(user);
+        }
     }
 
     @Override

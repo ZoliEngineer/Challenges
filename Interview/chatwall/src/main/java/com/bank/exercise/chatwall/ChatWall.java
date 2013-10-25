@@ -15,6 +15,10 @@ public class ChatWall {
 
     public List<String> executeCommand(String commandString) {
         Command command = CommandFactory.createFromInput(commandString);
-        return command.execute(storage);
+        List<String> result = command.execute(storage);
+        if(command.isExit()){
+            System.exit(0);
+        }
+        return result;
     }
 }

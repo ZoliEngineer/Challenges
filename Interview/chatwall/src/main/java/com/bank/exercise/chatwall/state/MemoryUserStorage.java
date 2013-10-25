@@ -1,10 +1,12 @@
 package com.bank.exercise.chatwall.state;
 
+import com.bank.exercise.chatwall.model.SimpleUser;
+import com.bank.exercise.chatwall.model.User;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class MemoryUserStorage implements UserStorage {
-    //INSTANCE;
 
     private final Map<String, User> userRepository = new HashMap<>();
 

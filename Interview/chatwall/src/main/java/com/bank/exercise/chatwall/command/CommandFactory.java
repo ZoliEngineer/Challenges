@@ -8,7 +8,9 @@ public class CommandFactory {
             return ExitCommand.create();
         } else if (PublishCommand.matches(input)) {
             return PublishCommand.create(input);
-        } else {
+        } else if (ReadCommand.matches(input)){
+            return ReadCommand.create(input);
+        } else    {
             return DefaultCommand.create();
         }
     }

@@ -1,8 +1,6 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall.model;
 
 public class ChatLine implements Comparable<ChatLine> {
-
-
     private final User user;
     private final String line;
     private final long timeOfPost;
@@ -13,6 +11,11 @@ public class ChatLine implements Comparable<ChatLine> {
         this.timeOfPost = timeOfPost;
     }
 
+    @Override
+    public int compareTo(ChatLine counter) {
+        return Long.compare(this.timeOfPost, counter.getTimeOfPost());
+    }
+
     public String getLine() {
         return line;
     }
@@ -21,15 +24,7 @@ public class ChatLine implements Comparable<ChatLine> {
         return timeOfPost;
     }
 
-    @Override
-    public int compareTo(ChatLine counter) {
-        return Long.compare(this.timeOfPost, counter.getTimeOfPost());
+    public String getUserName() {
+        return user.getName();
     }
-
-    @Override
-    public String toString() {
-        return ChatLineFormatter.format(user.getName(), line, timeOfPost, System.currentTimeMillis(), true);
-    }
-
-
 }

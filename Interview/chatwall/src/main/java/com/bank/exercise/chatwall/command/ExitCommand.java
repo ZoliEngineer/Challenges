@@ -21,7 +21,6 @@ public class ExitCommand implements Command {
     @Override
     public List<String> execute(Storage storage) {
         System.out.println("Exiting application");
-
         return Collections.emptyList();
     }
 

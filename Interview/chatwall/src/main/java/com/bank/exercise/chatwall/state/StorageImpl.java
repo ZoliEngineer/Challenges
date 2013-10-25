@@ -1,6 +1,9 @@
 package com.bank.exercise.chatwall.state;
 
 
+import com.bank.exercise.chatwall.model.ChatLine;
+import com.bank.exercise.chatwall.model.User;
+
 import java.util.List;
 
 public class StorageImpl implements Storage{
@@ -14,12 +17,12 @@ public class StorageImpl implements Storage{
 
     @Override
     public User getUser(String name) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return userStorage.get(name);
     }
 
     @Override
     public List<ChatLine> viewTimeLine(User user) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return chatStorage.getWallOf(user);
     }
 
     @Override
@@ -29,6 +32,6 @@ public class StorageImpl implements Storage{
 
     @Override
     public void publishMessage(User user, ChatLine chatLine) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        chatStorage.addLine(user, chatLine);
     }
 }

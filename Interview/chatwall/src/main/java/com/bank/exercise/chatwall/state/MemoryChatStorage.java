@@ -1,22 +1,34 @@
 package com.bank.exercise.chatwall.state;
 
-import java.util.List;
+import com.bank.exercise.chatwall.model.ChatLine;
+import com.bank.exercise.chatwall.model.User;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Angi
- * Date: 2013.10.25.
- * Time: 20:46
- * To change this template use File | Settings | File Templates.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 public class MemoryChatStorage implements ChatStorage{
+    Map<User, List<ChatLine>> chatLineRepository = new HashMap<>();
+
     @Override
     public void addLine(User user, ChatLine line) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        List<ChatLine> timeLine = chatLineRepository.get(user);
+        if(timeLine == null){
+            timeLine = initTimeLine(user);
+        }
+        timeLine.add(line);
     }
 
     @Override
     public List<ChatLine> getWallOf(User user) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return chatLineRepository.get(user);
+    }
+
+    private List<ChatLine> initTimeLine(User user) {
+        List<ChatLine> timeLine = new ArrayList<>();
+        chatLineRepository.put(user, timeLine);
+        return timeLine;
     }
 }

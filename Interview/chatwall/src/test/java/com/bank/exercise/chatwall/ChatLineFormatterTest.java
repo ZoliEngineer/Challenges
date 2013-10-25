@@ -1,7 +1,8 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall;
 
 import static org.junit.Assert.assertEquals;
 
+import com.bank.exercise.chatwall.ChatLineFormatter;
 import org.junit.Test;
 
 public class ChatLineFormatterTest {

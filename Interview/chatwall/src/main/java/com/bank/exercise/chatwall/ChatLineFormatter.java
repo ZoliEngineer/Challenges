@@ -1,4 +1,4 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall;
 
 public class ChatLineFormatter {
     private static final long MILLIS_IN_MINUTE = 60_000;

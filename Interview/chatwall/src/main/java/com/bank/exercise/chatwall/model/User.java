@@ -1,4 +1,4 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall.model;
 
 import java.util.Set;
 
