@@ -23,6 +23,14 @@ public class CommandFactoryTest {
     }
 
     @Test
+    public void whenInputContainsFollowThanReturnsFollowCommand() {
+        String input = "before follows after";
+        Command command = CommandFactory.createFromInput(input);
+
+        assertEquals(PublishCommand.class, command.getClass());
+    }
+
+    @Test
     public void whenCreateCalledWithNullThenReturnsDefaultCommand() {
         String input = null;
         Command command = CommandFactory.createFromInput(input);

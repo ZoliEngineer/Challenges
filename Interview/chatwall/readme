@@ -1,5 +1,5 @@
 - I didn't use dependency injection. Spring would be too much here...
 - The application can't be used concurrently
+- format validations
+- data validation (nonexisting user, etc...)
 
-
-abstract factory pattern
