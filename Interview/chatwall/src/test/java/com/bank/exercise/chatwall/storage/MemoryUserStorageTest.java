@@ -1,4 +1,4 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall.storage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

@@ -1,4 +1,4 @@
-package com.bank.exercise.chatwall.state;
+package com.bank.exercise.chatwall.storage;
 
 import com.bank.exercise.chatwall.model.ChatLine;
 import com.bank.exercise.chatwall.model.User;
