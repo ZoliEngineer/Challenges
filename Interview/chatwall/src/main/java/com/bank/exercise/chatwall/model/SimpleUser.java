@@ -3,7 +3,7 @@ package com.bank.exercise.chatwall.model;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SimpleUser implements User, SubsriptionHandler {
+public class SimpleUser implements User {
 
     private final String name;
 

@@ -35,7 +35,7 @@ public class CommandFactoryTest {
         String input = null;
         Command command = CommandFactory.createFromInput(input);
 
-        assertEquals(DefaultCommand.class, command.getClass());
+        assertEquals(FallbackCommand.class, command.getClass());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class CommandFactoryTest {
         String input = "";
         Command command = CommandFactory.createFromInput(input);
 
-        assertEquals(DefaultCommand.class, command.getClass());
+        assertEquals(FallbackCommand.class, command.getClass());
     }
 
     @Test
@@ -51,6 +51,6 @@ public class CommandFactoryTest {
         String input = "invaliddata123";
         Command command = CommandFactory.createFromInput(input);
 
-        assertEquals(DefaultCommand.class, command.getClass());
+        assertEquals(FallbackCommand.class, command.getClass());
     }
 }

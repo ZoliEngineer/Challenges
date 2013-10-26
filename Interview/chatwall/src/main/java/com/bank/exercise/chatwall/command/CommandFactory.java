@@ -10,8 +10,12 @@ public class CommandFactory {
             return PublishCommand.create(input);
         } else if (ReadCommand.matches(input)){
             return ReadCommand.create(input);
+        } else if (FollowCommand.matches(input)){
+            return FollowCommand.create(input);
+        } else if (WallCommand.matches(input)){
+            return WallCommand.create(input);
         } else    {
-            return DefaultCommand.create();
+            return FallbackCommand.create();
         }
     }
 }

@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bank.exercise</groupId>
     <artifactId>chatwall</artifactId>
@@ -24,6 +24,11 @@
             <version>15.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -36,32 +41,32 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-<!--                             <classpathPrefix>lib/</classpathPrefix> -->
+                            <!--                             <classpathPrefix>lib/</classpathPrefix> -->
                             <mainClass>com.bank.exercise.chatwall.launcher.CommandLineChatWall</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
 
-<!--             <plugin> -->
-<!--                 <groupId>org.apache.maven.plugins</groupId> -->
-<!--                 <artifactId>maven-dependency-plugin</artifactId> -->
-<!--                 <executions> -->
-<!--                     <execution> -->
-<!--                         <id>copy-dependencies</id> -->
-<!--                         <phase>package</phase> -->
-<!--                         <goals> -->
-<!--                             <goal>copy-dependencies</goal> -->
-<!--                         </goals> -->
-<!--                         <configuration> -->
-<!--                             <outputDirectory>${project.build.directory}/lib</outputDirectory> -->
-<!--                             <overWriteReleases>false</overWriteReleases> -->
-<!--                             <overWriteSnapshots>false</overWriteSnapshots> -->
-<!--                             <overWriteIfNewer>true</overWriteIfNewer> -->
-<!--                         </configuration> -->
-<!--                     </execution> -->
-<!--                 </executions> -->
-<!--             </plugin> -->
+            <!--             <plugin> -->
+            <!--                 <groupId>org.apache.maven.plugins</groupId> -->
+            <!--                 <artifactId>maven-dependency-plugin</artifactId> -->
+            <!--                 <executions> -->
+            <!--                     <execution> -->
+            <!--                         <id>copy-dependencies</id> -->
+            <!--                         <phase>package</phase> -->
+            <!--                         <goals> -->
+            <!--                             <goal>copy-dependencies</goal> -->
+            <!--                         </goals> -->
+            <!--                         <configuration> -->
+            <!--                             <outputDirectory>${project.build.directory}/lib</outputDirectory> -->
+            <!--                             <overWriteReleases>false</overWriteReleases> -->
+            <!--                             <overWriteSnapshots>false</overWriteSnapshots> -->
+            <!--                             <overWriteIfNewer>true</overWriteIfNewer> -->
+            <!--                         </configuration> -->
+            <!--                     </execution> -->
+            <!--                 </executions> -->
+            <!--             </plugin> -->
 
 
         </plugins>
