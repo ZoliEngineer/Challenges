@@ -7,7 +7,7 @@ import com.google.common.base.Strings;
 import java.util.Collections;
 import java.util.List;
 
-class FollowCommand implements Command {
+public class FollowCommand implements Command {
     private static final String FOLLOW_COMMAND_PART = "follows";
 
     private final String userName;
@@ -17,7 +17,9 @@ class FollowCommand implements Command {
         this.userName = splitedCommandLine[0].trim();
         this.userNameToFollow = splitedCommandLine[1].trim();
     }
+    public FollowCommand(Storage storage){
 
+    }
     @Override
     public boolean isExit() {
         return false;

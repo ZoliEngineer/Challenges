@@ -10,8 +10,6 @@ public class ExitCommand implements Command {
 
     private static final ExitCommand INSTANCE = new ExitCommand();
 
-    private ExitCommand() {
-    }
 
     @Override
     public boolean isExit() {
@@ -24,8 +22,14 @@ public class ExitCommand implements Command {
         return Collections.emptyList();
     }
 
+    @Override
+    public List<String> execute(String input) {
+        System.out.println("Exiting application");
+        return Collections.emptyList();
+    }
 
-    public static boolean matches(String commandLine) {
+
+    public boolean matches(String commandLine) {
         return PATTERN.equals(commandLine);
     }
 

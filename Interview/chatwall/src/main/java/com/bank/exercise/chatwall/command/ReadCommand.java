@@ -9,14 +9,16 @@ import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.List;
 
-class ReadCommand implements Command {
+public class ReadCommand implements Command {
 
     private final String userName;
 
     public ReadCommand(String commandLine) {
         this.userName = commandLine.trim();
     }
+    public ReadCommand(Storage storage){
 
+    }
     @Override
     public List<String> execute(Storage storage) {
         User user = storage.getUser(userName);

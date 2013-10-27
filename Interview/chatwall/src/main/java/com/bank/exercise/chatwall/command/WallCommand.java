@@ -11,13 +11,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-class WallCommand implements Command {
+public class WallCommand implements Command {
     private static final String WALL_COMMAND_PART = "wall";
+    private final Storage storage;
 
-    private final String userName;
+    private String userName;
 
     public WallCommand(String[] splitedCommandLine) {
         this.userName = splitedCommandLine[0].trim();
+        this.storage = null;
+    }
+
+    public WallCommand(Storage storage){
+        this.storage = storage;
     }
 
     @Override

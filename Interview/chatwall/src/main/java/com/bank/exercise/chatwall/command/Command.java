@@ -8,6 +8,10 @@ public interface Command {
 
     List<String>  execute(Storage storage);
 
+    List<String>  execute(String commandLine);
+
+    boolean matches(String input);
+
     boolean isExit();
 
 

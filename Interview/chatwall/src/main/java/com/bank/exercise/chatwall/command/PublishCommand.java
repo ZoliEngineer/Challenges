@@ -8,7 +8,7 @@ import com.bank.exercise.chatwall.model.User;
 import java.util.Collections;
 import java.util.List;
 
-class PublishCommand implements Command {
+public class PublishCommand implements Command {
     private static final String PUBLISH_COMMAN_PART = "->";
 
     private final String userName;
@@ -17,6 +17,10 @@ class PublishCommand implements Command {
     private PublishCommand(String[] splitedCommandLine) {
         this.userName = splitedCommandLine[0].trim();
         this.message = splitedCommandLine[1].trim();
+    }
+
+    public PublishCommand(Storage storage){
+
     }
 
     @Override
