@@ -10,8 +10,9 @@ import com.bank.exercise.chatwall.storage.StorageImpl;
 import com.google.common.collect.Lists;
 
 public class ChatWall {
-    private final Storage storage = new StorageImpl(new MemoryUserStorage(), new MemoryChatStorage());
 
+    // Dependency configuration. Preferred to be injected instead.
+    private final Storage storage = new StorageImpl(new MemoryUserStorage(), new MemoryChatStorage());
     private final Command exitCommand = new ExitCommand();
     private final Command fallbackCommand = new FallbackCommand();
     private final List<Command> knownCommands = Lists.newArrayList(
