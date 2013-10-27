@@ -11,17 +11,17 @@ public class SimpleUserTest {
     User user;
 
     @Before
-    public void init(){
+    public void init() {
         user = new SimpleUser(NAME);
     }
 
     @Test
-    public void subscriptionsAreEmptyAsDefault(){
+    public void subscriptionsAreEmptyAsDefault() {
         assertTrue(user.getSubscriptions().isEmpty());
     }
 
     @Test
-    public void whenUserIsSubscribedToOtherThenItIsStored(){
+    public void whenUserIsSubscribedToOtherThenItIsStored() {
         User other = new SimpleUser("other");
 
         user.subscribe(other);
@@ -31,14 +31,14 @@ public class SimpleUserTest {
     }
 
     @Test
-    public void whenUserIsSubscribedForItselfItIsNotStored(){
+    public void whenUserIsSubscribedForItselfItIsNotStored() {
         user.subscribe(user);
 
         assertTrue(user.getSubscriptions().isEmpty());
     }
 
     @Test
-    public void whenUserIsSubscribedToMultipleOtherThenAllIsStored(){
+    public void whenUserIsSubscribedToMultipleOtherThenAllIsStored() {
         User other1 = new SimpleUser("other1");
         User other2 = new SimpleUser("other2");
 
@@ -51,7 +51,7 @@ public class SimpleUserTest {
     }
 
     @Test
-    public void whenUserIsSubscribedToSameOtherMultipleTimesThenStoredOnce(){
+    public void whenUserIsSubscribedToSameOtherMultipleTimesThenStoredOnce() {
         User other = new SimpleUser("other1");
 
         user.subscribe(other);

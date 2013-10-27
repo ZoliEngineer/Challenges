@@ -21,13 +21,8 @@ public class StorageImpl implements Storage{
     }
 
     @Override
-    public List<ChatLine> viewTimeLine(User user) {
-        return chatStorage.getWallOf(user);
-    }
-
-    @Override
-    public List<ChatLine> viewWall(User user) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<ChatLine> getMessagesOf(User user) {
+        return chatStorage.getLines(user);
     }
 
     @Override

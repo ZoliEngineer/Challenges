@@ -20,7 +20,7 @@ public class MemoryChatStorageTest {
     @Test
     public void whenGetWallOfUnknownUserThanReturnsNull() {
         User user = mock(User.class);
-        assertNull(chatStorage.getWallOf(user));
+        assertNull(chatStorage.getLines(user));
     }
 
     @Test
@@ -31,8 +31,8 @@ public class MemoryChatStorageTest {
 
         chatStorage.addLine(user, line);
 
-        assertEquals(1, chatStorage.getWallOf(user).size());
-        assertTrue(chatStorage.getWallOf(user).contains(line));
+        assertEquals(1, chatStorage.getLines(user).size());
+        assertTrue(chatStorage.getLines(user).contains(line));
     }
 
     @Test
@@ -46,9 +46,9 @@ public class MemoryChatStorageTest {
         chatStorage.addLine(user, line1);
         chatStorage.addLine(user, line2);
 
-        assertEquals(2, chatStorage.getWallOf(user).size());
-        assertEquals(line1, chatStorage.getWallOf(user).get(0));
-        assertEquals(line2, chatStorage.getWallOf(user).get(1));
+        assertEquals(2, chatStorage.getLines(user).size());
+        assertEquals(line1, chatStorage.getLines(user).get(0));
+        assertEquals(line2, chatStorage.getLines(user).get(1));
     }
 
     @Test
@@ -63,11 +63,11 @@ public class MemoryChatStorageTest {
         chatStorage.addLine(user1, line1);
         chatStorage.addLine(user2, line2);
 
-        assertEquals(1, chatStorage.getWallOf(user1).size());
-        assertEquals(1, chatStorage.getWallOf(user2).size());
-        assertTrue(chatStorage.getWallOf(user1).contains(line1));
-        assertTrue(chatStorage.getWallOf(user2).contains(line2));
-        assertFalse(chatStorage.getWallOf(user1).contains(line2));
-        assertFalse(chatStorage.getWallOf(user2).contains(line1));
+        assertEquals(1, chatStorage.getLines(user1).size());
+        assertEquals(1, chatStorage.getLines(user2).size());
+        assertTrue(chatStorage.getLines(user1).contains(line1));
+        assertTrue(chatStorage.getLines(user2).contains(line2));
+        assertFalse(chatStorage.getLines(user1).contains(line2));
+        assertFalse(chatStorage.getLines(user2).contains(line1));
     }
 }

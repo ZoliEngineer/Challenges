@@ -22,7 +22,7 @@ public class MemoryChatStorage implements ChatStorage{
     }
 
     @Override
-    public List<ChatLine> getWallOf(User user) {
+    public List<ChatLine> getLines(User user) {
         return chatLineRepository.get(user);
     }
 

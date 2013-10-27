@@ -17,7 +17,7 @@ class WallCommand implements Command {
     private final String userName;
 
     public WallCommand(String[] splitedCommandLine) {
-        this.userName = splitedCommandLine[0];
+        this.userName = splitedCommandLine[0].trim();
     }
 
     @Override
@@ -32,9 +32,9 @@ class WallCommand implements Command {
         List<ChatLine> allLines = new ArrayList<>();
 
         for(User subscription : subscriptions){
-            allLines.addAll(storage.viewTimeLine(subscription));
+            allLines.addAll(storage.getMessagesOf(subscription));
         }
-        allLines.addAll(storage.viewTimeLine(user));
+        allLines.addAll(storage.getMessagesOf(user));
         Collections.sort(allLines);
 
         return createOutput(allLines);
@@ -44,7 +44,7 @@ class WallCommand implements Command {
     private List<String> createOutput(List<ChatLine> timeLine) { //TODO: duplicated
         List<String> output = new ArrayList<>(timeLine.size());
         for(ChatLine line : timeLine)          {
-            output.add(ChatLineFormatter.format(line.getUserName(), line.getLine(), line.getTimeOfPost(), System.currentTimeMillis(), false));
+            output.add(ChatLineFormatter.format(line.getUserName(), line.getLine(), line.getTimeOfPost(), System.currentTimeMillis(), true));
         }
         return output;
     }

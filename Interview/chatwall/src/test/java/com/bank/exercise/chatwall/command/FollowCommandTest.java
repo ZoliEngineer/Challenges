@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
@@ -19,7 +21,7 @@ import static org.mockito.Mockito.*;
 public class FollowCommandTest {
     private static final String USER_1 = "user1";
     private static final String USER_2 = "user2";
-    private static final String PROPER_COMMAND =  USER_1 + " follows " + USER_2;
+    private static final String PROPER_COMMAND = USER_1 + " follows " + USER_2;
 
     @Mock
     private Storage storage;
@@ -43,13 +45,15 @@ public class FollowCommandTest {
     public void commandExecutionStoresSubscriptionsForUser() {
         User user1 = mock(User.class);
         User user2 = mock(User.class);
-        when(storage.getUser(anyString())).thenReturn(user1).thenReturn(user2);
+        when(storage.getUser(eq(USER_1))).thenReturn(user1);
+        when(storage.getUser(eq(USER_2))).thenReturn(user2);
 
         Command command = FollowCommand.create(PROPER_COMMAND);
-        command.execute(storage);
+        List<String> output = command.execute(storage);
 
         verify(storage).getUser(eq(USER_1));
         verify(storage).getUser(eq(USER_2));
         verify(user1).subscribe(same(user2));
+        assertTrue(output.isEmpty());
     }
 }

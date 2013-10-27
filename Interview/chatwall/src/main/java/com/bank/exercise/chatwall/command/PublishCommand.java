@@ -1,4 +1,4 @@
-package com.bank.exercise.chatwall.command;
+ package com.bank.exercise.chatwall.command;
 
 import com.google.common.base.Strings;
 import com.bank.exercise.chatwall.model.ChatLine;

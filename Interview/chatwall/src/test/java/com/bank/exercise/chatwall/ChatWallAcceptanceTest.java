@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ChatWallAcceptanceTest {
     private ChatWall instance = new ChatWall();
+
     @Test
     public void verifyGivenScenario() throws InterruptedException {
         List<String> input = new ArrayList<>();
@@ -20,12 +21,12 @@ public class ChatWallAcceptanceTest {
 
         List<String> output = new ArrayList<>();
 
-        for(String command : input){
+        for (String command : input) {
             output.addAll(instance.executeCommand(command));
             Thread.sleep(1000);
         }
 
-        for(String outLine : output){
+        for (String outLine : output) {
             System.out.println(outLine);
         }
     }

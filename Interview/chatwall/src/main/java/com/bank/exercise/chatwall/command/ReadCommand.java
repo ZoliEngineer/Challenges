@@ -20,7 +20,7 @@ class ReadCommand implements Command {
     @Override
     public List<String> execute(Storage storage) {
         User user = storage.getUser(userName);
-        List<ChatLine> timeLine = storage.viewTimeLine(user);
+        List<ChatLine> timeLine = storage.getMessagesOf(user);
 
 
         return createOutput(timeLine);
